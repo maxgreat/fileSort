@@ -21,7 +21,9 @@ if __name__ == '__main__':
 		name, ext = os.path.splitext(paper.split('/')[-1])
 		tmp = name.split('-')
 		title = tmp[0]
-		year = tmp[1].split(' ')[-1]
+		for i in tmp[1].split(' '):
+			if i.isdigit():
+				year = i
 		#verify year
 		if not year.isdigit():
 			continue
@@ -35,7 +37,7 @@ if __name__ == '__main__':
 		if not os.path.isdir(mainDir+'/'+year):
 			os.mkdir(mainDir+'/'+year)
 		if not os.path.isfile(mainDir+'/'+year+'/'+name+ext):
-			os.link(comic, mainDir+'/'+year+'/'+name+ext)
+			os.link(paper, mainDir+'/'+year+'/'+name+ext)
 		
 		#create the file in the author directory
 		if len(author) > 1:
