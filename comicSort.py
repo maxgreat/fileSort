@@ -2,7 +2,7 @@ import glob
 import sys
 import os
 
-def dirExplore(dirname):
+def dirExplore(dirname, extension=''):
 	"""
 		Explore a directory, and the sub directory and return everry file with a given extension
 	"""
@@ -12,7 +12,7 @@ def dirExplore(dirname):
 			print(path, 'is a directory')
 			els += dirExplore(path)
 		elif os.path.isfile(path):
-			if '.cbr' in path or '.cbz' in path:
+			if extension in path:
 				els.append(path)
 	return els
 	
@@ -33,7 +33,8 @@ if __name__ == '__main__':
 	else:
 		mainDir = os.path.abspath(os.path.curdir)
 	
-	l = dirExplore(mainDir)
+	l = dirExplore(mainDir, extension='.cbr')
+	l += dirExplore(mainDir, extension='.cbz')
 	listSerie = []
 	for comic in l:
 		name, ext = os.path.splitext(comic.split('/')[-1])

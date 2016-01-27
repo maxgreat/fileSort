@@ -1,4 +1,6 @@
 import comicSort
+import sys
+import os
 
 """
 	The files must be in the form: 
