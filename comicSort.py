@@ -48,7 +48,7 @@ if __name__ == '__main__':
 		#extract name of the serie
 		serie = ''
 		i = 1
-		while i < len(tmp) and not isfloat(tmp[i]):
+		while i < len(tmp) and not tmp[i].split('.')[0].isdigit():
 			serie += tmp[i]+' '
 			i += 1
 		serie = serie[0:-1]
