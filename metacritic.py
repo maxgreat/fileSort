@@ -3,6 +3,7 @@ import urllib.parse
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import re
+import googlesearch3
 from googlesearch import search
 
 with open('Games.csv', 'r') as file:
@@ -15,7 +16,7 @@ for line in lines:
 	title = query[0]
 	platform = query[1].replace('Indie', '')
 	s_query = ' '.join([title, platform, 'metacritic'])
-	lst = search(s_query, stop=1)
+	lst = search(s_query, stop = 1)
 	top_1 = list(lst)[0]
 	req = Request(top_1, headers={'User-Agent': 'Mozilla/5.0'})
 	webpage = urlopen(req).read()
