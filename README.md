@@ -16,3 +16,9 @@ Works only with <em><strong>Python3</strong></em><br/>
 <em><strong>Require</strong></em> : pip3 install google
 </p>
 	
+<h2>howlongtobeat</h2>
+<p>
+look for playing time for a given game title
+Works only with <em><strong>Python3</strong></em><br/>
+<em><strong>Require</strong></em> : pip3 install google
+</p>
