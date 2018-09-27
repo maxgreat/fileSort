@@ -6,16 +6,9 @@ import re
 import googlesearch3
 from googlesearch import search
 
-with open('Games.csv', 'r') as file:
-	lines = file.readlines()
-	lines = lines[1:]
-	
-for line in lines:
-	
-	query = line.split(',')
-	title = query[0]
-	platform = query[1].replace('Indie', '')
-	s_query = ' '.join([title, platform, 'metacritic'])
+
+def findCritic(title):
+	s_query = ' '.join([title, 'metacritic'])
 	lst = search(s_query, stop = 1)
 	top_1 = list(lst)[0]
 	req = Request(top_1, headers={'User-Agent': 'Mozilla/5.0'})
@@ -41,4 +34,23 @@ for line in lines:
 		genre = genre.replace(',', ', ')
 	except Exception as e:
 		genre = 'NaN'
-	print(title, platform, critics, users, genre)
+	return title, critics, users, genre
+
+
+def criticGames(fileName='Games.csv', test=False):
+	with open('Games.csv', 'r') as file:
+		lines = file.readlines()
+		lines = lines[1:]
+
+		if test:
+			print(findCritic(lines[0].split(',')[0]))
+			return
+		
+		for line in lines:	
+			title = line.split(',')[0]
+			print(findCritic(title))
+
+
+
+if __name__=='__main__':
+	criticGames(test=True)
