@@ -6,7 +6,7 @@
 
 **renameComic** : change comic book name with Release Date first
 
-**metacritic** : download game ranking from metacritic website, store them in csv file<br\>
+**metacritic** : download game ranking from metacritic website, store them in csv file<br/>
 Require : pip install google
 
 	
