@@ -3,11 +3,15 @@
 <h2>comicSort</h2> 
 <p>sort comic book by release date</p>
 
-**paperSort** : sort research paper by year and authors
+<h2>paperSort</h2>
+<p>sort research paper by year and authors</p>
 
-**renameComic** : change comic book name with Release Date first
+<h2>renameComic</h2>
+<p>change comic book name with Release Date first<p>
 
-**metacritic** : download game ranking from metacritic website, store them in csv file<br/>
-Require : pip install google
-
+<h2>metacritic</h2>
+<p>
+download game ranking from metacritic website, store them in csv file<br/>
+**Require** : pip install google
+</p>
 	
