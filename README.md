@@ -1,6 +1,7 @@
 ## Python scripts for handling file
 
-**comicSort** : sort comic book by release date
+<h2>comicSort</h2> 
+<p>sort comic book by release date</p>
 
 **paperSort** : sort research paper by year and authors
 
