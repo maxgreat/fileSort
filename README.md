@@ -12,6 +12,6 @@
 <h2>metacritic</h2>
 <p>
 download game ranking from metacritic website, store them in csv file<br/>
-**Require** : pip install google
+<em>Require</em> : pip install google
 </p>
 	
