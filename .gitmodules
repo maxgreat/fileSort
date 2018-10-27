@@ -1,0 +1,3 @@
+[submodule "howlongtobeat"]
+	path = howlongtobeat
+	url = https://github.com/maxgreat/howlongtobeat
