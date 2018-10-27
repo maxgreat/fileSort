@@ -1,3 +1,6 @@
 [submodule "howlongtobeat"]
 	path = howlongtobeat
 	url = https://github.com/maxgreat/howlongtobeat
+[submodule "metacritic"]
+	path = metacritic
+	url = https://github.com/maxgreat/metacritic
