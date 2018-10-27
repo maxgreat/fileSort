@@ -22,15 +22,17 @@ class GameEntry:
 				
 					
 	def checkMissing(self, categories):
+		"""
+			Check for missing Entries
+			Look online to fill it up
+		"""
 		print("Checking data for title :", self.infos['Name'])
 		
 		if not 'metacritic score' in self.infos:
-			print("Looking for metacritic score online")
 			critics, _, _ = findCritic(self.infos['Name'])
-			self.infos['metacritic score'] = critics
+			self.infos['metacritic score'] = int(critics)
 			
 		if not 'Temps de jeu' in self.infos:
-			print("Looking for howlongtobeat time")
 			mainTime = findMainTimes(self.infos['Name'])
 			self.infos['Temps de jeu'] = mainTime
 			
@@ -38,32 +40,53 @@ class GameEntry:
 		
 	def __str__(self):
 		return str(self.infos)
+		
+	def toTsv(self):
+		s = ""
+		for inf in self.infos:
+			s += str(self.infos[inf]) + "\t"
+		return s
 
 
-
-def gFile2Dict(fileName='Games.tsv', splitSym='\t'):
+class GameList:
 	"""
-		Read fileName where the first line must be categories
-		each entry must be separated by splitSym
+		Handle a list of game entries
 	"""
-	lines = open(fileName).readlines()
-	categories = lines[0].split(splitSym)
+	def __init__(self, fileName='Games.tsv', splitSym='\t'):
+		"""
+			Read fileName where the first line must be categories
+			each entry must be separated by splitSym
+		"""
+		lines = open(fileName).readlines()
+		self.categories = lines[0].split(splitSym)
 
-	#check if metacritic score is already present
-	if not 'metacritic score' in categories:
-		categories.append('metacritic score')
-
-	#for each game, check every entry
-	for game in lines[1:]:
-		game = game.split(splitSym)
-		gameEntry = GameEntry(game, categories)
-		print(str(gameEntry))
-		gameEntry.checkMissing(categories)
-		print(str(gameEntry))
-		return
+		#check if metacritic score is already present
+		
+		self.entries = []
+		#for each game, check every entry
+		for game in lines[1:3]:
+			game = game.split(splitSym)
+			self.entries.append(GameEntry(game, self.categories))
+		
+	def addCategory(self, catName):
+		if not catName in self.categories:
+			self.categories.append('metacritic score')
+		[x.checkMissing(self.categories) for x in self.entries]
+		
+	def toTsv(self):
+		s = ""
+		for c in self.categories:
+			s += c + "\t"
+		s += "\n"
+		for e in self.entries:
+			s += e.toTsv() + "\n"
+		return s
+	
 
 if __name__=='__main__':
-	gFile2Dict()
+	gL = GameList()
+	gL.addCategory('metacritic score')
+	print(gL.toTsv())
 
 	
 
